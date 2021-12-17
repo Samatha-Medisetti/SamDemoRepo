@@ -15,8 +15,11 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "sdfgfd",
-					"value": ""
+					"variableName": "var1",
+					"value": {
+						"value": "@activity('Lookup1').output",
+						"type": "Expression"
+					}
 				}
 			},
 			{
@@ -46,6 +49,11 @@
 				}
 			}
 		],
+		"variables": {
+			"var1": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
