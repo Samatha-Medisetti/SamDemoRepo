@@ -9,12 +9,24 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "EmpId",
+				"name": "saleDate",
+				"type": "varchar"
+			},
+			{
+				"name": "salesItems",
+				"type": "varchar"
+			},
+			{
+				"name": "country",
+				"type": "varchar"
+			},
+			{
+				"name": "quantity",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "EmpName",
+				"name": "Filename",
 				"type": "varchar"
 			}
 		],
