@@ -10,7 +10,7 @@
 		"schema": [
 			{
 				"name": "saleDate",
-				"type": "date"
+				"type": "varchar"
 			},
 			{
 				"name": "salesItems",
@@ -32,7 +32,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tab1"
+			"table": "tab2"
 		}
 	}
 }
