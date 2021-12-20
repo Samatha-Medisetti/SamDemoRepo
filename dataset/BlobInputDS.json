@@ -1,0 +1,36 @@
+{
+	"name": "BlobInputDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Sam_BlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Customer_ID|Customer_Name|Customer_Email|Customer_City|Customer_State|Customer_DOB",
+				"type": "String"
+			}
+		]
+	}
+}
