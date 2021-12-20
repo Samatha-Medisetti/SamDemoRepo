@@ -20,7 +20,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tab1"
+			"table": "tab2"
 		}
 	}
 }
