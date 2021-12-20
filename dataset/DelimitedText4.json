@@ -20,15 +20,19 @@
 		},
 		"schema": [
 			{
+				"name": "EmpId",
 				"type": "String"
 			},
 			{
+				"name": "Name",
 				"type": "String"
 			},
 			{
+				"name": "Country",
 				"type": "String"
 			},
 			{
+				"name": "Department",
 				"type": "String"
 			}
 		]
