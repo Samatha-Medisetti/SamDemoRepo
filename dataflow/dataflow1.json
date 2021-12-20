@@ -1,0 +1,45 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedTextDS1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable2",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "ConditionalSplit1"
+				},
+				{
+					"name": "DerivedColumn1"
+				},
+				{
+					"name": "DerivedColumn2"
+				}
+			],
+			"script": "source(output(\n\t\tsaleDate as string,\n\t\tSalesItems as string,\n\t\tcountry as string,\n\t\tquantity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 split(isNull(toDate(saleDate, 'dd-MMM-yyyy')),\n\tdisjoint: false) ~> ConditionalSplit1@(BadRows, GoodRows)\nConditionalSplit1@BadRows derive(FileName = 'tbl_sales_good_bad.csv') ~> DerivedColumn1\nConditionalSplit1@GoodRows derive(saleDate = toDate(saleDate, 'dd-MMM-yyyy'),\n\t\tfileName = 'tbl_sales_bad_good.csv') ~> DerivedColumn2\nDerivedColumn1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tsaleDate as string,\n\t\tsalesItems as string,\n\t\tcountry as string,\n\t\tquantity as integer,\n\t\tFilename as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tsaleDate,\n\t\tsalesItems = SalesItems,\n\t\tcountry,\n\t\tquantity,\n\t\tFilename = FileName\n\t)) ~> sink1\nDerivedColumn2 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tsaleDate as date,\n\t\tsalesItems as string,\n\t\tcountry as string,\n\t\tquantity as integer,\n\t\tFilename as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tsaleDate,\n\t\tsalesItems = SalesItems,\n\t\tcountry,\n\t\tFilename = fileName\n\t)) ~> sink2"
+		}
+	}
+}
