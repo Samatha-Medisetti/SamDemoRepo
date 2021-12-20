@@ -9,30 +9,26 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "saleDate",
-				"type": "varchar"
-			},
-			{
-				"name": "salesItems",
-				"type": "varchar"
-			},
-			{
-				"name": "country",
-				"type": "varchar"
-			},
-			{
-				"name": "quantity",
+				"name": "EmpId",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "Filename",
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Country",
+				"type": "varchar"
+			},
+			{
+				"name": "Department",
 				"type": "varchar"
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tab2"
+			"table": "SCD1"
 		}
 	}
 }
