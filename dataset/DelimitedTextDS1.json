@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "tbl_sales_good_bad.csv",
 				"container": "input"
 			},
 			"columnDelimiter": ",",
