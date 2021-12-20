@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"variableName": "var1",
 					"value": {
-						"value": "value(activity('Lookup1').output.value.Empname)",
+						"value": "@activity('Lookup1').output.value.Empname[0]",
 						"type": "Expression"
 					}
 				}
@@ -51,7 +51,7 @@
 		],
 		"variables": {
 			"var1": {
-				"type": "String"
+				"type": "Array"
 			}
 		},
 		"annotations": []
