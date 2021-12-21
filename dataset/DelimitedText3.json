@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "FixedLengthfile.txt",
+				"fileName": "Union2.csv",
 				"container": "input"
 			},
 			"columnDelimiter": ",",
